@@ -496,7 +496,7 @@
   gap: 0.6rem;
   padding: 0.6rem 0.85rem;
   border-radius: 14px;
-  background: rgb(13 27 46 / 0.78);
+  background: rgb(13 27 46 / 0.9);
   border: 1px solid rgb(59 158 232 / 0.22);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -1300,3 +1300,19 @@ html:not(.js) .processo-linha::after { scale: 1 1; }
   .topo-selo { letter-spacing: 0.06em; font-size: 0.66rem; padding-inline: 0.8rem; }
   .pino-svg { top: 14%; left: 31%; width: 38%; height: 62%; }
 }
+
+/* Pino 3D (Etapa 3): aparece suave por cima do pino desenhado, que então some. */
+.pino-cena { touch-action: pan-y; }
+.pino-3d {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+.pino-svg { transition: opacity 0.9s ease; }
+.com-3d .pino-3d { opacity: 1; }
+.com-3d .pino-svg { opacity: 0; }
+.com-3d { cursor: grab; }
+.com-3d:active { cursor: grabbing; }
