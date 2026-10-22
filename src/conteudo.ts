@@ -289,16 +289,19 @@ export const antesDepois = {
 
 export const sobre = {
   selo: 'Quem faz isso acontecer',
-  titulo: 'Não sou generalista.',
+  titulo: 'Não sou generalista: meu foco é marketing para empresas de serviços.',
   anos: '3+',
   paragrafos: [
     'Sou <strong>Victor Eduardo</strong>, gestor focado em presença digital, com ênfase em serviços essenciais e facilities. Atuo com um objetivo claro: <strong>garantir que empresas sérias parem de perder contratos por falta de visibilidade.</strong> No seu mercado, confiança não se constrói com curtidas, mas com autoridade e presença no momento certo.',
     'Atendo negócios no Paraná e região e conheço o que realmente faz diferença: o tempo de decisão de quem contrata para empresas, a urgência do cliente residencial e o peso das avaliações locais que a maioria ignora. Sei como encurtar o caminho até o orçamento.',
     'Minha entrega é direta: <strong>site, Google, anúncios e conteúdo que geram contatos reais, não números vazios.</strong> Trabalho com relatórios claros e foco total em conversão.',
     'Venho do "chão de fábrica" e de uma família de empreendedores. Como ex-inspetor de qualidade, aplico no marketing o mesmo rigor técnico que você exige na sua operação. Sei como o mercado funciona por dentro, não apenas por trás de uma tela.',
+    'Sou formado em <strong>Análise e Desenvolvimento de Sistemas</strong> e sigo me especializando: faço MBA em <strong>Inteligência Artificial, Negócios e Marketing</strong> e pós-graduação em <strong>Gestão Comercial e Vendas</strong>, para unir dados, tecnologia e vendas na estratégia de cada cliente.',
   ],
   credenciais: [
-    { icone: 'graduation-cap', texto: 'Formando em Análise e Desenvolvimento de Sistemas' },
+    { icone: 'graduation-cap', texto: 'Formado em Análise e Desenvolvimento de Sistemas' },
+    { icone: 'brain-circuit', texto: 'MBA em Inteligência Artificial, Negócios e Marketing (cursando)' },
+    { icone: 'briefcase-business', texto: 'Pós em Gestão Comercial e Vendas (cursando)' },
     { icone: 'award', texto: 'Subido · Aluno do Pedro Sobral' },
     { icone: 'map-pin', texto: 'Curitiba - PR' },
   ],

@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 const nomes = [
   'search', 'globe', 'trending-down', 'smartphone', 'star', 'users',
   'monitor-smartphone', 'map-pin', 'megaphone', 'pen-tool',
-  'graduation-cap', 'award', 'arrow-right', 'arrow-up-right', 'mail', 'check', 'x',
+  'graduation-cap', 'brain-circuit', 'briefcase-business', 'award', 'arrow-right', 'arrow-up-right', 'mail', 'check', 'x',
   'chevron-down', 'chevron-left', 'chevron-right', 'quote', 'clipboard-check',
   'compass', 'rocket', 'chart-column', 'trending-up', 'zoom-in', 'calendar-check', 'target',
 ]

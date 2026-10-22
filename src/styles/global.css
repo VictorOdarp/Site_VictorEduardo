@@ -273,7 +273,8 @@
 .aberto .menu-btn span::after { transform: translateY(-7px) rotate(-45deg); }
 
 @media (max-width: 899px) {
-  .menu-btn { display: inline-flex; }
+  .menu-btn { display: inline-flex; order: 3; }
+  .cabecalho-linha > nav { order: 2; margin-left: auto; }
   .menu-links {
     position: absolute;
     top: 100%;
@@ -1151,7 +1152,12 @@
 .credencial svg { color: var(--color-blue-mid); flex-shrink: 0; }
 
 /* Perguntas */
-.perguntas { display: grid; gap: 0.8rem; margin-top: 3rem; max-width: 860px; }
+.faq-grade { display: grid; gap: 3rem; }
+@media (min-width: 960px) {
+  .faq-grade { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr); gap: 4rem; align-items: start; }
+  .faq-cabeca { position: sticky; top: 110px; }
+}
+.perguntas { display: grid; gap: 0.8rem; }
 .pergunta {
   border-radius: 14px;
   background: #fff;
@@ -1232,7 +1238,11 @@
   padding-top: 2.5rem;
   border-top: 1px solid rgb(255 255 255 / 0.08);
 }
-@media (min-width: 768px) { .contatos { grid-template-columns: repeat(4, 1fr); } }
+.contato-largo { grid-column: 1 / -1; }
+@media (min-width: 768px) {
+  .contatos { grid-template-columns: repeat(4, 1fr); }
+  .contato-largo { grid-column: auto; }
+}
 .contato-rotulo { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(255 255 255 / 0.45); }
 .contato-valor {
   display: inline-flex;
@@ -1243,7 +1253,7 @@
   font-size: 0.9rem;
   color: rgb(255 255 255 / 0.75);
   text-decoration: none;
-  word-break: break-word;
+  white-space: nowrap;
   transition: color 0.2s ease;
 }
 a.contato-valor:hover { color: var(--color-blue-glow); }

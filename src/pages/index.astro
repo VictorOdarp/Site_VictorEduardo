@@ -432,8 +432,8 @@ const menu = [
 
     <!-- ═══════ 8. FAQ ═══════ -->
     <section class="secao clara" id="faq">
-      <div class="caixa">
-        <div class="revelar">
+      <div class="caixa faq-grade">
+        <div class="faq-cabeca revelar">
           <p class="selo">{faq.selo}</p>
           <h2 class="titulo">{faq.titulo}</h2>
           <p class="descricao">{faq.texto}</p>
@@ -480,11 +480,11 @@ const menu = [
       </div>
 
       <div class="contatos text-left">
-        <div>
+        <div class="contato-largo">
           <div class="contato-rotulo">WhatsApp</div>
           <a class="contato-valor" href={contato.whatsapp}><Icon name="whatsapp" class="size-4" />{contato.telefone}</a>
         </div>
-        <div>
+        <div class="contato-largo">
           <div class="contato-rotulo">E-mail</div>
           <a class="contato-valor" href={`mailto:${contato.email}`}><Icon name="mail" class="size-4" />{contato.email}</a>
         </div>
