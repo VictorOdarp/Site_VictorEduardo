@@ -299,7 +299,7 @@
   }
   .menu-links a { display: block; padding: 0.95rem 0; font-size: 1.02rem; }
   .menu-links a:not(.botao)::after { display: none; }
-  .menu-links .botao { margin-top: 0.75rem; min-height: 50px; }
+  .menu-links .botao { display: flex; margin-top: 0.75rem; min-height: 50px; padding: 0.8rem 1.2rem; font-size: 1rem; }
 }
 
 /* Barrinha azul no topo que mostra quanto da página já foi lida (só nos navegadores que suportam). */

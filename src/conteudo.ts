@@ -300,8 +300,8 @@ export const sobre = {
   ],
   credenciais: [
     { icone: 'graduation-cap', texto: 'Formado em Análise e Desenvolvimento de Sistemas' },
-    { icone: 'brain-circuit', texto: 'MBA em Inteligência Artificial, Negócios e Marketing (cursando)' },
-    { icone: 'briefcase-business', texto: 'Pós em Gestão Comercial e Vendas (cursando)' },
+    { icone: 'brain-circuit', texto: 'MBA em Inteligência Artificial, Negócios e Marketing' },
+    { icone: 'briefcase-business', texto: 'Pós em Gestão Comercial e Vendas' },
     { icone: 'award', texto: 'Subido · Aluno do Pedro Sobral' },
     { icone: 'map-pin', texto: 'Curitiba - PR' },
   ],
