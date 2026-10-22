@@ -1,0 +1,59 @@
+---
+/** Moldura da página: cabeçalho HTML, SEO, prévia de link, fontes e estilos. */
+import '@fontsource-variable/instrument-sans'
+import '@fontsource-variable/syne'
+import '@fontsource/fraunces/800.css'
+import '../styles/global.css'
+// Endereços das fontes principais, para o navegador começar a baixá-las junto com a página.
+import fonteTexto from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url'
+import fonteTitulo from '@fontsource/fraunces/files/fraunces-latin-800-normal.woff2?url'
+
+interface Props {
+  title: string
+  description: string
+  /** Dados estruturados para o Google (schema.org). */
+  jsonLd?: object
+}
+
+const { title, description, jsonLd } = Astro.props
+const canonical = new URL('/', Astro.site).href
+const imagem = new URL('/og.jpg', Astro.site).href
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#080c14" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href={fonteTexto} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={fonteTitulo} as="font" type="font/woff2" crossorigin />
+
+    <!-- Prévia do link (WhatsApp, Instagram, Facebook, LinkedIn, X) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Victor Eduardo" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imagem} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Victor Eduardo: marketing para empresas de serviços e facilities" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    <!-- Marca que o JavaScript está ligado: só assim os blocos começam escondidos para aparecer ao rolar. -->
+    <script is:inline>document.documentElement.classList.add('js')</script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

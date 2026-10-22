@@ -1,0 +1,657 @@
+---
+/**
+ * Site do Victor Eduardo (victoreduardo.vercel.app).
+ * Etapa 1: o mesmo conteúdo do site antigo (referencias/site-antigo.html), agora leve,
+ * com menu no celular, contadores corrigidos, prévia de link e números atualizados.
+ */
+import { Image } from 'astro:assets'
+import Base from '../layouts/Base.astro'
+import rosto from '../assets/rosto.webp'
+import perfil from '../assets/perfil.webp'
+import feedback1 from '../assets/feedback1.webp'
+import feedback2 from '../assets/feedback2.webp'
+import feedback3 from '../assets/feedback3.webp'
+
+const whatsapp = 'https://wa.me/554195902537'
+const whatsappDiagnostico = `${whatsapp}?text=${encodeURIComponent('Olá Victor, quero solicitar o diagnóstico gratuito')}`
+const email = 'victorodarp@gmail.com'
+
+const title = 'Victor Eduardo | Marketing para Serviços & Facilities'
+const description =
+  'Site profissional, Google Meu Negócio, tráfego pago e conteúdo para empresas de serviços e facilities. Mais contatos pelo Google, menos dependência de indicação.'
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Victor Eduardo · Marketing para Serviços & Facilities',
+  url: 'https://victoreduardo.vercel.app/',
+  image: 'https://victoreduardo.vercel.app/og.jpg',
+  telephone: '+55 41 9590-2537',
+  email,
+  areaServed: 'Paraná',
+  address: { '@type': 'PostalAddress', addressLocality: 'Curitiba', addressRegion: 'PR', addressCountry: 'BR' },
+  founder: { '@type': 'Person', name: 'Victor Eduardo', jobTitle: 'Gestor de Mídias' },
+  sameAs: ['https://instagram.com/victorodarp'],
+}
+
+const destaqueInove = [
+  { label: 'Posição no Google', valor: '<span class="up">↑ Top 1</span>' },
+  { label: 'Leads por mês', valor: '40 contatos' },
+  { label: 'Taxa de conversão do site', valor: '21,94%' },
+  { label: 'Avaliações no GMN', valor: '<span class="dot dot-green"></span>4,9 ★ (120+ aval.)' },
+  { label: 'Custo por lead (tráfego)', valor: 'R$ 6,06' },
+  { label: 'Status do projeto', valor: '<span class="dot dot-blue"></span>Ativo' },
+]
+
+const numeros = [
+  { n: '8+', l: 'Empresas atendidas' },
+  { n: '166%', l: 'Aumento médio de leads' },
+  { n: '10.34k+', l: 'Visitas geradas no Google / mês' },
+  { n: '14+', l: 'Sites criados no nicho' },
+]
+
+const dores = [
+  {
+    emoji: '🔍',
+    titulo: 'Invisível no Google e no Maps',
+    texto: 'Quando alguém busca "empresa de terceirização em [sua cidade]", o seu nome não aparece, mas o do concorrente aparece. Oportunidades que somem antes mesmo de chegarem até você.',
+  },
+  {
+    emoji: '🌐',
+    titulo: 'Site que não transmite credibilidade',
+    texto: 'Um site amador, ou nenhum site, faz o prospect desconfiar antes de entrar em contato. No setor de serviços B2B e B2C, a primeira impressão digital vale tanto quanto a primeira visita presencial.',
+  },
+  {
+    emoji: '💸',
+    titulo: 'Tráfego pago jogando dinheiro fora',
+    texto: 'Ou você nunca tentou anunciar, ou já tentou e "não funcionou". Campanhas de Google Ads para serviços e facilities exigem configuração especializada: com a palavra errada, o orçamento vai para leads que nunca vão contratar.',
+  },
+  {
+    emoji: '📱',
+    titulo: 'Sem presença consistente nas redes',
+    texto: 'Conteúdo postado sem estratégia, sem frequência, sem pauta. Resultado: seguidores que não viram clientes e uma imagem de marca que não diferencia sua empresa de nenhuma outra.',
+  },
+  {
+    emoji: '⭐',
+    titulo: 'Poucas avaliações no Google Meu Negócio',
+    texto: 'O GMN com 3 avaliações, ou pior, sem resposta às negativas, é um freio de mão no crescimento. Prospects comparam antes de ligar. Menos estrelas = menos ligações.',
+  },
+  {
+    emoji: '📉',
+    titulo: '100% dependente de indicação',
+    texto: 'Indicação é ótima, mas não é escalável nem previsível. Quando o fluxo de indicações seca, o faturamento oscila. Uma empresa sólida precisa de canais de aquisição que funcionem independentemente da agenda dos clientes antigos.',
+  },
+]
+
+const servicos = [
+  {
+    icone: '🌐',
+    titulo: 'Site Profissional e Conversivo',
+    texto: 'Página construída para converter visitante em lead. Não apenas para "ter uma presença online".',
+    itens: [
+      'Design focado em credibilidade e conversão',
+      'Copy persuasivo, escrito para o seu cliente',
+      'Responsivo, rápido e otimizado para SEO',
+      'Formulário e botão WhatsApp integrados',
+      'Rastreamento de conversões configurado',
+    ],
+  },
+  {
+    icone: '📍',
+    titulo: 'Google Meu Negócio (GMN)',
+    texto: 'Seu perfil local configurado e gerenciado para aparecer nas buscas de quem está perto e pronto para contratar.',
+    itens: [
+      'Otimização completa do perfil',
+      'Estratégia de captação de avaliações',
+      'Publicações semanais e respostas',
+      'Monitoramento de palavras-chave locais',
+      'Atualizações de fotos e informações',
+    ],
+  },
+  {
+    icone: '📣',
+    titulo: 'Tráfego Pago (Google Ads e Meta Ads)',
+    texto: 'Campanhas criadas para o seu nicho: segmentação, palavras-chave e criativos pensados para quem contrata serviços.',
+    itens: [
+      'Configuração e estrutura de campanhas',
+      'Palavras-chave exclusivas do setor',
+      'Otimização contínua e relatório mensal',
+      'Foco em custo por lead, não em cliques',
+      'Construção de criativos e copys',
+    ],
+  },
+  {
+    icone: '✏️',
+    titulo: 'Criação de Conteúdo',
+    texto: 'Pauta estratégica, produção e publicação de conteúdo que posiciona sua empresa como referência no mercado.',
+    itens: [
+      'Conteúdo para Instagram, Facebook e LinkedIn',
+      'Posts educativos, cases e depoimentos',
+      'Artes e legendas alinhadas à identidade',
+      'Calendário editorial com frequência definida',
+      'Conteúdo em diferentes formatos (Reels, estáticos e carrosséis)',
+    ],
+  },
+]
+
+const passos = [
+  { n: '01', titulo: 'Diagnóstico', texto: 'Análise gratuita da presença digital atual' },
+  { n: '02', titulo: 'Estratégia', texto: 'Plano personalizado com metas e canais' },
+  { n: '03', titulo: 'Execução', texto: 'Entrega dos serviços com prazo definido' },
+  { n: '04', titulo: 'Relatório', texto: 'Números reais e transparentes todo mês' },
+  { n: '05', titulo: 'Crescimento', texto: 'Otimização contínua baseada em dados' },
+]
+
+const cases = [
+  {
+    nome: 'Inove Serviços Terceirização · Limpeza e Portaria Profissional',
+    detalhe: 'Ponta Grossa, Paraná · Google Ads/Meta Ads + GMN + Redes Sociais + Site · 2025',
+    metricas: [
+      { n: '4x', l: 'Aumento de leads mensais' },
+      { n: 'Top 1', l: 'Posição no Google Maps' },
+      { n: 'R$6,06', l: 'Custo por lead atingido' },
+    ],
+    partes: [
+      ['Antes:', 'O cenário inicial tinha três grandes gargalos de conversão: um site com design e comunicação (copy) desalinhados, baixa autoridade local no Google (menos de 60 avaliações) e campanhas de tráfego que não geravam resultados reais.'],
+      ['O que foi feito:', 'Reestruturação digital completa (Site, GMN, Tráfego e Conteúdo) para reverter um cenário de baixa conversão e autoridade fraca. A nova estratégia destravou o crescimento da empresa, multiplicando a atração de leads mensais em 4x.'],
+      ['Resultado em 4 meses:', 'De 4 a 5 leads/mês para 40 leads/mês, com custo 70% abaixo da média do setor.'],
+    ],
+    citacao: 'O nível das entregas faz toda a diferença para nós. O trabalho de marketing tem sido importantíssimo para alavancar o crescimento da empresa.',
+    autor: 'Proprietário · Inove Serviços',
+  },
+  {
+    nome: 'LimperSofá · Higienização de estofados',
+    detalhe: 'Toledo, Paraná · Redes Sociais + GMN + Site · 2025',
+    metricas: [
+      { n: '3x', l: 'Aumento de leads mensais' },
+      { n: '12+', l: 'Novas avaliações no GMN' },
+      { n: '16%', l: 'Taxa de conversão do site' },
+    ],
+    partes: [
+      ['Antes:', 'Dependência quase total de indicações "boca a boca", perfil no Instagram desorganizado (focado apenas em fotos estáticas) e o Google Meu Negócio com poucas fotos e desatualizado.'],
+      ['O que foi feito:', 'Reestruturação do Google Meu Negócio para captar clientes de fundo de funil e criação de conteúdo estratégico para gerar desejo e confiança.'],
+      ['Resultado em 5 meses:', 'Salto de 2 para 9 orçamentos mensais constantes, preenchendo os buracos na agenda da equipe e reduzindo o tempo ocioso.'],
+    ],
+    citacao: 'Estou satisfeito com a cara do nosso site e com os conteúdos. O reflexo disso é real, tem dias e momentos faço orçamentos em quantidades que não estava acostumado',
+    autor: 'Proprietário · LimperSofá',
+  },
+  {
+    nome: 'NékeLimpa · Higienização de estofados',
+    detalhe: 'Toledo, Paraná · Google Ads/Meta Ads + Redes Sociais + GMN + Site · 2025',
+    metricas: [
+      { n: '1.297k', l: 'Impressões/mês no Google' },
+      { n: '53+', l: 'Novos orçamentos gerados' },
+      { n: '6x', l: 'ROI sobre investimento' },
+    ],
+    partes: [
+      ['Antes:', 'Marca com pouca presença digital na região, sem ranqueamento no Google e com uma comunicação que não transmitia o valor real dos serviços, atraindo clientes que em grande parte brigavam apenas por preço.'],
+      ['O que foi feito:', 'Posicionamento de marca focado em autoridade, reestruturação completa do Google Meu Negócio com funil de avaliações e campanhas de pesquisa direta para o site, segmentadas para o público de maior poder aquisitivo.'],
+      ['Resultado em 5 meses:', 'Crescimento expressivo nas buscas locais e atração de clientes qualificados, que fecham o serviço pelo valor percebido e não apenas pelo menor preço.'],
+    ],
+    citacao: 'Gostei demais de como o instagram ficou e do nível dos conteúdos. O retorno em orçamentos é visível.',
+    autor: 'Proprietário · NékeLimpa',
+  },
+  {
+    nome: 'LimperSofá Paraguay · Limpieza de Tapizados y Alfombras',
+    detalhe: 'Hernandarias, Paraguai · Google Ads/Meta Ads + Redes Sociais + Site + Adaptação de Mercado · 2025',
+    metricas: [
+      { n: '100%', l: 'Estruturação digital do zero' },
+      { n: '3+', l: 'Canais ativos no novo mercado' },
+      { n: 'Ativo', l: 'Fase de tração em andamento' },
+    ],
+    partes: [
+      ['O desafio:', 'Expandir as operações de uma marca brasileira para o Paraguai, começando do absoluto zero. O desafio envolvia superar a ausência temporária de ferramentas locais (como o GMN, aguardando liberação de CEP), exigindo uma presença fortíssima no Meta Ads e em um site próprio para gerar a primeira onda de confiança no novo país.'],
+      ['O que foi feito:', 'Desenvolvimento de um site focado em conversão e totalmente adaptado ao idioma e ao comportamento local. Criação de uma base de conteúdo estratégico no Instagram para construir autoridade imediata e estruturação das primeiras campanhas de Meta Ads para teste de público e reconhecimento de marca.'],
+      ['Status do projeto:', 'Estrutura digital premium 100% implementada. Atualmente em fase de testes ativos de tráfego (tração), coletando dados do novo mercado para escalar os orçamentos nas próximas semanas.'],
+    ],
+    citacao: 'Entrar em um novo país é um desafio gigante, mas ter o site e as redes sociais montados com tanta qualidade nos deu a base e a segurança que precisávamos para dar esse primeiro passo.',
+    autor: 'Proprietário · LimperSofá Paraguay',
+  },
+]
+
+const feedbacks = [
+  { img: feedback1, quem: 'Proprietário · Inove Serviços · Ponta Grossa/PR' },
+  { img: feedback2, quem: 'Proprietário · NékeLimpa · Toledo/PR' },
+  { img: feedback3, quem: 'Proprietário · LimperSofá · Toledo/PR' },
+]
+
+const antes = [
+  'Dependência total de indicação',
+  'Invisível nas buscas do Google',
+  'Site desatualizado ou inexistente',
+  'Poucas avaliações no Google Maps',
+  'Conteúdo sem estratégia ou frequência',
+  'Orçamento de marketing desperdiçado',
+]
+const depois = [
+  'Leads chegando todo dia pelo Google',
+  'Top 3 nas buscas locais do nicho',
+  'Site que transmite credibilidade e converte',
+  '120+ avaliações com nota 4,9',
+  'Pauta de conteúdo que posiciona como referência',
+  'Campanhas com ROI mensurado mensalmente',
+]
+
+const perguntas = [
+  {
+    p: 'Preciso contratar todos os serviços juntos?',
+    r: 'Não. Posso atuar em <strong>um canal específico</strong> (só Google Meu Negócio, só tráfego, só site) ou em pacotes combinados. Durante o diagnóstico gratuito, analiso sua situação atual e recomendo o que fará mais diferença no menor tempo. Sem vender o que você não precisa.',
+  },
+  {
+    p: 'Em quanto tempo aparecem os resultados?',
+    r: 'Depende do canal. <strong>Tráfego pago</strong> pode gerar leads já na primeira semana após a campanha no ar. <strong>Google Meu Negócio</strong> mostra evolução em 30 a 60 dias. <strong>SEO orgânico</strong> leva de 3 a 6 meses para consolidar. Por isso costumo combinar canais de resultado rápido com estratégias de longo prazo.',
+  },
+  {
+    p: 'Há fidelidade ou contrato mínimo?',
+    r: 'Trabalho com contratos mensais renováveis a partir de <strong>3 meses de comprometimento inicial</strong>, o tempo necessário para implementar a estratégia e colher os primeiros resultados consistentes. Não existe multa abusiva: se não estiver vendo valor, conversamos antes de qualquer decisão.',
+  },
+  {
+    p: 'Como funciona a gestão do dinheiro do tráfego pago?',
+    r: 'O <strong>orçamento de mídia (verba para o Google Ads/Meta Ads) fica 100% na sua conta</strong>. Você tem acesso, visibilidade e controle total. Eu cobro apenas pela gestão estratégica das campanhas. Assim, você nunca depende de mim para saber onde seu dinheiro foi parar.',
+  },
+]
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <!-- ═══════ MENU ═══════ -->
+  <nav id="menu">
+    <a href="#hero" class="nav-logo">
+      <span class="nav-logo-dot"></span>
+      VictorEduardo
+    </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-links" aria-label="Abrir menu">
+      <span></span>
+    </button>
+    <ul id="menu-links">
+      <li><a href="#solucao">Serviços</a></li>
+      <li><a href="#resultados">Cases</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#footer" class="nav-btn">Falar agora</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- ═══════ 1. TOPO ═══════ -->
+    <section id="hero">
+      <div class="hero-lines"></div>
+      <div class="hero-orb"></div>
+      <div class="hero-orb2"></div>
+
+      <div class="hero-inner">
+        <div>
+          <div class="hero-pill"><i aria-hidden="true">📍</i> Marketing especializado em Serviços &amp; Facilities</div>
+          <div class="hero-author">
+            <div class="hero-author-img">
+              <Image src={rosto} alt="Foto de Victor Eduardo" width={56} height={56} densities={[1, 2]} loading="eager" />
+            </div>
+            <div class="hero-author-info">
+              <div class="hero-author-name">Victor Eduardo</div>
+              <div class="hero-author-role">Gestor de Mídias · Marketing para Serviços &amp; Facilities</div>
+            </div>
+          </div>
+          <h1 class="hero-h1">
+            Pare de perseguir clientes
+            <span class="line2">e comece a ser a primeira escolha.</span>
+          </h1>
+          <p class="hero-sub">
+            Enquanto você foca na excelência da operação, <strong>eu cuido de aparecer, ser encontrado e converter</strong>. Site profissional, tráfego pago, Google Meu Negócio e conteúdo estratégico, validados e adaptáveis para empresas que buscam domínio de mercado.
+          </p>
+          <div class="hero-btns">
+            <a href={whatsappDiagnostico} class="btn-main">📋 Quero uma análise gratuita</a>
+            <a href="#resultados" class="btn-ghost">Ver resultados reais →</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-title">📊 Dados Reais · Inove Serviços</div>
+          {
+            destaqueInove.map((linha) => (
+              <div class="hc-row">
+                <span class="hc-label">{linha.label}</span>
+                <span class="hc-val" set:html={linha.valor} />
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="hero-stats-bar" data-contadores>
+          {
+            numeros.map((item) => (
+              <div class="hstat">
+                <div class="hstat-n">{item.n}</div>
+                <div class="hstat-l">{item.l}</div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ 2. O PROBLEMA ═══════ -->
+    <section id="dor">
+      <div class="stag">O problema de hoje</div>
+      <h2 class="stitle">Empresas que o Google não encontra.</h2>
+      <p class="sdesc">O serviço é bom, a equipe é confiável, mas os clientes novos somem, os concorrentes aparecem na frente e o telefone só toca por indicação. Reconhece?</p>
+
+      <div class="dor-layout">
+        {
+          dores.map((dor, i) => (
+            <div class="dor-card revelar" style={`--i:${i % 2}`}>
+              <div class="dor-emoji" aria-hidden="true">{dor.emoji}</div>
+              <h3 class="h4">{dor.titulo}</h3>
+              <p>{dor.texto}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="dor-banner">
+        <p>Esses problemas não são falta de qualidade.<br />São <span>falta de marketing especializado no setor</span>.</p>
+        <a href="#solucao" class="btn-main" style="white-space:nowrap;">Ver a solução →</a>
+      </div>
+    </section>
+
+    <!-- ═══════ 3. SERVIÇOS ═══════ -->
+    <section id="solucao">
+      <div class="sol-top">
+        <div>
+          <div class="stag" style="color:var(--blue-light)">O que eu entrego</div>
+          <h2 class="stitle light">Estratégia direta para quem presta serviços essenciais.</h2>
+        </div>
+        <div>
+          <p class="sdesc light">Não sou um profissional generalista. Essa vivência me permite entregar velocidade e escala onde outros apenas "tentam" entender como o seu cliente decide e contrata.</p>
+        </div>
+      </div>
+
+      <div class="sol-grid">
+        {
+          servicos.map((s, i) => (
+            <div class="sol-card revelar" style={`--i:${i % 2}`}>
+              <div class="sol-icon" aria-hidden="true">{s.icone}</div>
+              <h3 class="h4">{s.titulo}</h3>
+              <p>{s.texto}</p>
+              <ul>
+                {s.itens.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+
+      <ol class="processo">
+        {
+          passos.map((p, i) => (
+            <li class="passo revelar" style={`--i:${i}`}>
+              <div class="passo-n">{p.n}</div>
+              <div class="passo-title">{p.titulo}</div>
+              <div class="passo-desc">{p.texto}</div>
+              <span class="passo-arrow" aria-hidden="true">›</span>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <!-- ═══════ 4. CASES ═══════ -->
+    <section id="resultados">
+      <div class="stag">Cases Reais</div>
+      <h2 class="stitle">Resultados de quem já apostou no marketing especializado.</h2>
+      <p class="sdesc">Dados reais, clientes reais.</p>
+
+      <div class="res-grid">
+        {
+          cases.map((c, i) => (
+            <article class="res-card revelar" style={`--i:${i % 2}`}>
+              <div class="res-head">
+                <div class="res-head-icon" aria-hidden="true">⭐</div>
+                <div>
+                  <h3 class="h4">{c.nome}</h3>
+                  <span>{c.detalhe}</span>
+                </div>
+              </div>
+              <div class="res-body" data-contadores>
+                <div class="res-metrics">
+                  {c.metricas.map((m) => (
+                    <div class="metric">
+                      <div class="metric-n">{m.n}</div>
+                      <div class="metric-l">{m.l}</div>
+                    </div>
+                  ))}
+                </div>
+                <p class="res-desc">
+                  {c.partes.map(([titulo, texto], j) => (
+                    <Fragment>
+                      {j > 0 && (
+                        <Fragment>
+                          <br />
+                          <br />
+                        </Fragment>
+                      )}
+                      <strong>{titulo}</strong> {texto}
+                    </Fragment>
+                  ))}
+                </p>
+                <blockquote class="res-quote">
+                  "{c.citacao}"
+                  <strong>— {c.autor}</strong>
+                </blockquote>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ═══════ 5. DEPOIMENTOS ═══════ -->
+    <section id="depoimentos">
+      <div class="stag" style="color:var(--blue-light)">O que dizem os clientes</div>
+      <h2 class="stitle light">Donos de empresas que pararam de depender só de indicação</h2>
+
+      <div class="dep-grid">
+        {
+          feedbacks.map((f, i) => (
+            <figure class="dep-card revelar" style={`--i:${i}`}>
+              <div class="dep-screenshot">
+                <Image
+                  src={f.img}
+                  alt={`Print de mensagem do cliente com feedback sobre o trabalho (${f.quem})`}
+                  widths={[360, 540, 720]}
+                  sizes="(max-width: 960px) 88vw, 400px"
+                  quality={72}
+                />
+              </div>
+              <figcaption class="dep-author">
+                <div class="dep-role">{f.quem}</div>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+
+      <div class="ba-block">
+        <div class="ba-col bef">
+          <div class="ba-label bef">✗ Antes</div>
+          <ul>{antes.map((item) => <li>{item}</li>)}</ul>
+        </div>
+        <div class="ba-sep"></div>
+        <div class="ba-col aft">
+          <div class="ba-label aft">✓ Depois</div>
+          <ul>{depois.map((item) => <li>{item}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ 6. SOBRE ═══════ -->
+    <section id="sobre">
+      <div class="stag">Quem faz isso acontecer</div>
+      <h2 class="stitle">Não sou generalista.</h2>
+
+      <div class="sobre-wrap">
+        <div class="sobre-img-box">
+          <div class="sobre-img-frame">
+            <Image
+              class="imagem-perfil"
+              src={perfil}
+              alt="Victor Eduardo"
+              widths={[400, 640, 900]}
+              sizes="(max-width: 960px) 88vw, 420px"
+              quality={75}
+            />
+          </div>
+          <div class="sobre-badge">
+            <strong>3+</strong>
+            <span>anos no<br />marketing</span>
+          </div>
+        </div>
+
+        <div class="sobre-text">
+          <p>
+            Sou <strong>Victor Eduardo</strong>, gestor focado em presença digital, com ênfase em serviços essenciais e facilities. Atuo com um objetivo claro: <strong>garantir que empresas sérias parem de perder contratos por falta de visibilidade.</strong> Sei que no seu mercado confiança não se constrói com curtidas, mas com autoridade e presença no momento certo.
+          </p>
+          <p>
+            Atendo negócios no Paraná e região, dominando o que realmente move o ponteiro: o tempo de decisão no B2B, a urgência do cliente residencial e o peso das avaliações locais que a maioria ignora. Entendo a fundo o comportamento de quem contrata serviços e como encurtar o caminho até o orçamento.
+          </p>
+          <p>
+            Minha entrega é direta: <strong>site, Google, anúncios e conteúdo que geram contatos reais, não números vazios.</strong> Trabalho com relatórios claros e foco total em conversão.
+          </p>
+          <p>
+            Venho do "chão de fábrica" e de uma família de empreendedores. Como ex-inspetor de qualidade, aplico no marketing o mesmo rigor técnico que você exige na sua operação. Sei como o mercado funciona por dentro, não apenas por trás de uma tela.
+          </p>
+          <div class="creds">
+            <div class="cred">🎓 Formando em Análise e Desenvolvimento de Sistemas</div>
+            <div class="cred">🏆 Subido · Aluno do Pedro Sobral</div>
+            <div class="cred">📍 Curitiba - PR</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ 7. FAQ ═══════ -->
+    <section id="faq">
+      <div class="stag">Perguntas Frequentes</div>
+      <h2 class="stitle">Dúvidas que aparecem antes de fechar</h2>
+      <p class="sdesc">Prefiro responder aqui do que deixar uma objeção travar a sua decisão.</p>
+
+      <div class="faq-grid">
+        {
+          perguntas.map((item, i) => (
+            <div class="faq-item revelar" style={`--i:${i % 2}`}>
+              <h3 class="faq-q">
+                <span class="faq-q-mark" aria-hidden="true">?</span>
+                {item.p}
+              </h3>
+              <p class="faq-a" set:html={item.r} />
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════ 8. CHAMADA FINAL E RODAPÉ ═══════ -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-stag">Próximo passo</div>
+      <h2 class="footer-h2">
+        Pronto para sua empresa<br />
+        <span>aparecer na frente dos concorrentes?</span>
+      </h2>
+      <p class="footer-sub">
+        Uma análise gratuita revela exatamente onde você está perdendo clientes. Sem compromisso, sem enrolação.
+      </p>
+      <div class="footer-btns">
+        <a href={whatsappDiagnostico} class="btn-whats">💬 Falar no WhatsApp agora</a>
+        <a href={`mailto:${email}`} class="btn-main">📧 Enviar e-mail</a>
+      </div>
+
+      <div class="footer-links">
+        <div class="flink">
+          <div class="flink-label">WhatsApp</div>
+          <a href={whatsapp}>📱 +55 41 9590-2537</a>
+        </div>
+        <div class="flink">
+          <div class="flink-label">E-mail</div>
+          <a href={`mailto:${email}`}>✉️ VictorOdarp@gmail.com</a>
+        </div>
+        <div class="flink">
+          <div class="flink-label">Instagram</div>
+          <a href="https://instagram.com/victorodarp" target="_blank" rel="noopener">📷 @victorodarp</a>
+        </div>
+        <div class="flink">
+          <div class="flink-label">Localização</div>
+          <span class="flink-texto">📍 Curitiba - PR</span>
+        </div>
+      </div>
+
+      <div class="footer-copy">
+        © {new Date().getFullYear()} Victor Eduardo · Marketing para Serviços e Facilities · Todos os direitos reservados.
+      </div>
+    </div>
+  </footer>
+</Base>
+
+<script>
+  // Menu do celular: abre e fecha no botão; fecha ao escolher um item.
+  const menu = document.getElementById('menu')!
+  const botao = menu.querySelector<HTMLButtonElement>('.menu-btn')!
+  const alternar = (abrir: boolean) => {
+    menu.classList.toggle('aberto', abrir)
+    botao.setAttribute('aria-expanded', String(abrir))
+    botao.setAttribute('aria-label', abrir ? 'Fechar menu' : 'Abrir menu')
+  }
+  botao.addEventListener('click', () => alternar(!menu.classList.contains('aberto')))
+  menu.querySelectorAll('ul a').forEach((link) => link.addEventListener('click', () => alternar(false)))
+
+  const parado = matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  // Blocos que aparecem ao rolar.
+  const revelados = document.querySelectorAll('.revelar')
+  if (parado || !('IntersectionObserver' in window)) {
+    revelados.forEach((el) => el.classList.add('visivel'))
+  } else {
+    const observador = new IntersectionObserver(
+      (entradas) =>
+        entradas.forEach((e) => {
+          if (!e.isIntersecting) return
+          e.target.classList.add('visivel')
+          observador.unobserve(e.target)
+        }),
+      { rootMargin: '0px 0px -8% 0px' },
+    )
+    revelados.forEach((el) => observador.observe(el))
+  }
+
+  // Contadores: sobem do zero até o número escrito, mantendo as mesmas casas decimais
+  // (10.34k+ termina em 10.34k+, e não em 10.3k+). Valores como "R$6,06", "Top 1" e "Ativo" ficam como estão.
+  const contar = (el: HTMLElement) => {
+    const final = el.textContent!.trim()
+    const partes = final.match(/^(\d+)(?:\.(\d+))?(\D*)$/)
+    if (!partes) return
+    const casas = partes[2]?.length ?? 0
+    const alvo = Number(`${partes[1]}.${partes[2] ?? 0}`)
+    const sufixo = partes[3]
+    const duracao = 1600
+    let inicio = 0
+    const passo = (agora: number) => {
+      inicio ||= agora
+      const p = Math.min((agora - inicio) / duracao, 1)
+      const suave = 1 - Math.pow(1 - p, 3)
+      el.textContent = p < 1 ? (alvo * suave).toFixed(casas) + sufixo : final
+      if (p < 1) requestAnimationFrame(passo)
+    }
+    requestAnimationFrame(passo)
+  }
+  if (!parado && 'IntersectionObserver' in window) {
+    const observador = new IntersectionObserver(
+      (entradas) =>
+        entradas.forEach((e) => {
+          if (!e.isIntersecting) return
+          e.target.querySelectorAll<HTMLElement>('.hstat-n, .metric-n').forEach(contar)
+          observador.unobserve(e.target)
+        }),
+      { threshold: 0.3 },
+    )
+    document.querySelectorAll('[data-contadores]').forEach((el) => observador.observe(el))
+  }
+</script>
