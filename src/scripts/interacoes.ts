@@ -87,20 +87,9 @@ function contadores() {
   quandoAparecer(document.querySelectorAll('[data-contadores]:not([hidden])'), contarDentro, { threshold: 0.3 })
 }
 
-/** Topo: a luz azul acompanha o mouse. Cartões de serviço: inclinam e brilham onde o mouse está. */
+/** Cartões de serviço: inclinam e brilham onde o mouse está (só no computador). */
 function mouseNoComputador() {
   if (!mouse || parado) return
-  const topo = document.getElementById('topo')!
-  let quadro = 0
-  topo.addEventListener('pointermove', (e) => {
-    cancelAnimationFrame(quadro)
-    quadro = requestAnimationFrame(() => {
-      const r = topo.getBoundingClientRect()
-      topo.style.setProperty('--mx', `${e.clientX - r.left}px`)
-      topo.style.setProperty('--my', `${e.clientY - r.top}px`)
-    })
-  })
-
   document.querySelectorAll<HTMLElement>('.inclinar').forEach((cartao) => {
     cartao.addEventListener('pointermove', (e) => {
       const r = cartao.getBoundingClientRect()
@@ -206,28 +195,13 @@ function whatsappFlutuante() {
   ;['topo', 'contato'].forEach((id) => observador.observe(document.getElementById(id)!))
 }
 
-/**
- * Pino 3D: só começa a baixar depois que a página carregou e o navegador ficou livre.
- * Não carrega com "reduzir movimento", com economia de dados ligada ou em internet 2G.
- */
-function carregarPino3D() {
-  const cena = document.querySelector<HTMLElement>('.pino-cena')
-  const conexao = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection
-  if (!cena || parado || conexao?.saveData || /2g/.test(conexao?.effectiveType ?? '')) return
-  const comecar = () => import('./pino3d').then((m) => m.iniciarPino3D(cena)).catch(() => {})
-  const quandoLivre = () =>
-    'requestIdleCallback' in window ? requestIdleCallback(comecar, { timeout: 2500 }) : setTimeout(comecar, 1200)
-  if (document.readyState === 'complete') quandoLivre()
-  else addEventListener('load', quandoLivre, { once: true })
-}
-
 /** Divide o trabalho em pedaços pequenos, um por vez, para a página nunca travar ao abrir (bom para celulares simples). */
 const proximaVez = () => new Promise((r) => setTimeout(r, 0))
 
 export async function iniciar() {
   cabecalho()
   revelar()
-  for (const etapa of [contadores, servicos, abasDosCases, processo, depoimentos, whatsappFlutuante, mouseNoComputador, carregarPino3D]) {
+  for (const etapa of [contadores, servicos, abasDosCases, processo, depoimentos, whatsappFlutuante, mouseNoComputador]) {
     await proximaVez()
     etapa()
   }

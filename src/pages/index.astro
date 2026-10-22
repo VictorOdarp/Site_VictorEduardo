@@ -7,6 +7,7 @@ import { Image } from 'astro:assets'
 import Base from '../layouts/Base.astro'
 import Icon from '../components/Icon.astro'
 import Pino from '../components/Pino.astro'
+import LogoCliente from '../components/LogoCliente.astro'
 import rosto from '../assets/rosto.webp'
 import perfil from '../assets/perfil.webp'
 import feedback1 from '../assets/feedback1.webp'
@@ -65,7 +66,7 @@ const menu = [
   <!-- ═══════ CABEÇALHO ═══════ -->
   <header class="cabecalho" id="cabecalho">
     <div class="caixa cabecalho-linha">
-      <a href="#topo" class="logo"><span class="logo-ponto"></span>VictorEduardo</a>
+      <a href="#topo" class="logo"><span class="logo-ponto"></span>Victor Eduardo</a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-links" aria-label="Abrir menu">
         <span></span>
       </button>
@@ -136,7 +137,7 @@ const menu = [
             <ul class="clientes-lista" aria-hidden={copia > 0 ? 'true' : undefined}>
               {clientes.map((c) => (
                 <li class="cliente">
-                  <span class="cliente-sigla" aria-hidden="true">{c.sigla}</span>
+                  <LogoCliente logo={c.logo} nome={c.nome} bandeira={c.bandeira} />
                   <span>
                     <span class="cliente-nome block">{c.nome}</span>
                     <span class="cliente-ramo block">
@@ -272,10 +273,15 @@ const menu = [
           cases.itens.map((c, i) => (
             <div class="case revelar" id={`case-${i}`} role="tabpanel" aria-labelledby={`aba-${i}`} data-contadores>
               <div class="case-topo">
-                <h3 class="case-nome">{c.nome}</h3>
-                <p class="case-ramo">
-                  {c.ramo} · {c.local}
-                </p>
+                <div class="case-cabeca">
+                  <LogoCliente logo={c.logo} nome={c.nome} bandeira={c.bandeira} altura={56} />
+                  <div>
+                    <h3 class="case-nome">{c.nome}</h3>
+                    <p class="case-ramo">
+                      {c.ramo} · {c.local}
+                    </p>
+                  </div>
+                </div>
                 <div class="etiquetas">
                   {c.canais.map((canal) => (
                     <span class="etiqueta">{canal}</span>

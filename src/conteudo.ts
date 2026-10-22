@@ -48,12 +48,16 @@ export const numeros = [
   { n: '14+', l: 'Sites criados no nicho' },
 ]
 
-/** Faixa de clientes: sem logotipos, cada cliente aparece com as iniciais, o ramo e a cidade. */
+/**
+ * Faixa de clientes: logotipo, ramo e cidade.
+ * "logo" é o nome do arquivo em src/assets/clientes (preparados por npm run logos);
+ * "bandeira: 'paraguai'" coloca a bandeirinha do Paraguai sobre o logotipo.
+ */
 export const clientes = [
-  { nome: 'Inove Serviços', sigla: 'IS', ramo: 'Limpeza e portaria', cidade: 'Ponta Grossa/PR' },
-  { nome: 'LimperSofá', sigla: 'LS', ramo: 'Higienização de estofados', cidade: 'Toledo/PR' },
-  { nome: 'NékeLimpa', sigla: 'NL', ramo: 'Higienização de estofados', cidade: 'Toledo/PR' },
-  { nome: 'LimperSofá Paraguay', sigla: 'LP', ramo: 'Limpieza de tapizados', cidade: 'Hernandarias/PY' },
+  { nome: 'Inove Serviços', logo: 'inove', ramo: 'Limpeza e portaria', cidade: 'Ponta Grossa/PR' },
+  { nome: 'LimperSofá', logo: 'limpersofa', ramo: 'Higienização de estofados', cidade: 'Toledo/PR' },
+  { nome: 'NékeLimpa', logo: 'nekelimpa', ramo: 'Higienização de estofados', cidade: 'Toledo/PR' },
+  { nome: 'LimperSofá Paraguay', logo: 'limpersofa', bandeira: 'paraguai', ramo: 'Limpieza de tapizados', cidade: 'Hernandarias/PY' },
 ]
 
 export const problema = {
@@ -172,6 +176,7 @@ export const cases = {
   itens: [
     {
       aba: 'Inove Serviços',
+      logo: 'inove',
       nome: 'Inove Serviços Terceirização',
       ramo: 'Limpeza e portaria profissional',
       local: 'Ponta Grossa, PR · 2025',
@@ -191,6 +196,7 @@ export const cases = {
     },
     {
       aba: 'LimperSofá',
+      logo: 'limpersofa',
       nome: 'LimperSofá',
       ramo: 'Higienização de estofados',
       local: 'Toledo, PR · 2025',
@@ -210,6 +216,7 @@ export const cases = {
     },
     {
       aba: 'NékeLimpa',
+      logo: 'nekelimpa',
       nome: 'NékeLimpa',
       ramo: 'Higienização de estofados',
       local: 'Toledo, PR · 2025',
@@ -229,6 +236,8 @@ export const cases = {
     },
     {
       aba: 'LimperSofá Paraguay',
+      logo: 'limpersofa',
+      bandeira: 'paraguai',
       nome: 'LimperSofá Paraguay',
       ramo: 'Limpieza de tapizados y alfombras',
       local: 'Hernandarias, Paraguai · 2025',

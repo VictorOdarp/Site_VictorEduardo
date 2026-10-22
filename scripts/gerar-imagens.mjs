@@ -39,7 +39,7 @@ await sharp({ create: { width: 180, height: 180, channels: 3, background: '#0d1b
   .toFile('public/apple-touch-icon.png')
 
 // Fraunces (a fonte dos títulos) vira desenho: assim a imagem sai igual em qualquer computador.
-const arquivo = readFileSync('node_modules/@fontsource/fraunces/files/fraunces-latin-800-normal.woff')
+const arquivo = readFileSync('node_modules/@fontsource/fraunces/files/fraunces-latin-700-normal.woff')
 const fraunces = opentype.parse(arquivo.buffer.slice(arquivo.byteOffset, arquivo.byteOffset + arquivo.byteLength))
 // O toPathData() do opentype.js às vezes escreve "NaN" e corta a palavra; aqui a curva sem ponto de controle vira reta.
 const n = (v) => Math.round(v * 100) / 100

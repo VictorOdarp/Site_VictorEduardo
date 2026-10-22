@@ -1,0 +1,36 @@
+---
+/** Logotipo de um cliente (de src/assets/clientes), com a bandeirinha do Paraguai quando for o caso. */
+import { Image } from 'astro:assets'
+import inove from '../assets/clientes/inove.png'
+import limpersofa from '../assets/clientes/limpersofa.png'
+import nekelimpa from '../assets/clientes/nekelimpa.png'
+
+const logos = { inove, limpersofa, nekelimpa }
+
+interface Props {
+  logo: string
+  nome: string
+  bandeira?: string
+  /** Altura do logotipo na tela, em pixels. */
+  altura?: number
+  class?: string
+}
+
+const { logo, nome, bandeira, altura = 44, class: classe } = Astro.props
+const imagem = logos[logo as keyof typeof logos]
+---
+
+<span class:list={['logo-cliente', classe]} style={`--altura:${altura}px`}>
+  <Image src={imagem} alt={`Logotipo ${nome}`} height={altura} densities={[1, 2]} format="webp" quality={85} />
+  {
+    bandeira === 'paraguai' && (
+      <svg class="bandeira" viewBox="0 0 30 20" role="img" aria-label="Paraguai">
+        <rect width="30" height="20" fill="#0038a8" />
+        <rect width="30" height="13.33" fill="#fff" />
+        <rect width="30" height="6.67" fill="#d52b1e" />
+        <circle cx="15" cy="10" r="2.6" fill="#fff" stroke="#1a7f37" stroke-width="0.9" />
+        <circle cx="15" cy="10" r="1" fill="#fcd116" />
+      </svg>
+    )
+  }
+</span>
